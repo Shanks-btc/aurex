@@ -1,0 +1,18 @@
+{
+  "signal-price": {
+    "totalSignals": 20,
+    "correctSignals": 14,
+    "x402PaymentsMade": 20,
+    "x402PaymentsOnTime": 20,
+    "score": 79,
+    "history": []
+  },
+  "signal-flow": {
+    "totalSignals": 20,
+    "correctSignals": 11,
+    "x402PaymentsMade": 20,
+    "x402PaymentsOnTime": 20,
+    "score": 68,
+    "history": []
+  }
+}
