@@ -1,13 +1,12 @@
 /**
  * AUREX — Root Layout
- * Features: Live data ticker strip + sticky nav + animated background
  */
 
 import './globals.css';
 
 export const metadata = {
-  title: 'AUREX — Credit-Weighted Signal Intelligence',
-  description: 'Autonomous multi-agent credit scoring and capital allocation system on X Layer. OKX Build X Hackathon Season 2.',
+  title: 'AUREX — Autonomous Capital Allocation',
+  description: 'Autonomous capital allocation system for agentic economy on X Layer. Credit scores built from real onchain accuracy determine capital allocation.',
   keywords: ['AUREX', 'X Layer', 'Onchain OS', 'AI Agents', 'OKX', 'DeFi', 'Credit Scoring'],
 };
 
@@ -24,16 +23,15 @@ export default function RootLayout({ children }) {
       </head>
       <body>
 
-        {/* ── Live Ticker Strip ── */}
+        {/* Ticker Strip */}
         <div className="ticker-strip">
           <div className="ticker-content">
-            {/* Doubled for seamless loop */}
             {[...Array(2)].map((_, set) => (
               <span key={set} style={{ display: 'flex', gap: '48px' }}>
                 <span className="ticker-item">
                   <span className="ticker-label">AUREX</span>
-                  <span className="ticker-value">CREDIT-WEIGHTED ALLOCATION</span>
-                  <span className="ticker-up">● LIVE</span>
+                  <span className="ticker-value">AUTONOMOUS CAPITAL ALLOCATION</span>
+                  <span className="ticker-up">LIVE</span>
                 </span>
                 <span className="ticker-item">
                   <span className="ticker-label">NETWORK</span>
@@ -43,27 +41,23 @@ export default function RootLayout({ children }) {
                 </span>
                 <span className="ticker-item">
                   <span className="ticker-label">ONCHAIN OS</span>
-                  <span className="ticker-up">DEX API ● WALLET API ● x402 ● MCP</span>
-                </span>
-                <span className="ticker-item">
-                  <span className="ticker-label">HACKATHON</span>
-                  <span className="ticker-value">OKX BUILD X SEASON 2</span>
+                  <span className="ticker-up">DEX API + WALLET API + x402 + MCP</span>
                 </span>
                 <span className="ticker-item">
                   <span className="ticker-label">AGENTS</span>
                   <span className="ticker-value">3 AUTONOMOUS</span>
-                  <span className="ticker-up">● OPERATING</span>
+                  <span className="ticker-up">OPERATING</span>
                 </span>
                 <span className="ticker-item">
                   <span className="ticker-label">PROTOCOL</span>
-                  <span className="ticker-value">SIGNAL → CREDIT → ALLOCATE → EARN</span>
+                  <span className="ticker-value">SIGNAL TO CREDIT TO ALLOCATE TO EARN</span>
                 </span>
               </span>
             ))}
           </div>
         </div>
 
-        {/* ── Navbar ── */}
+        {/* Navbar */}
         <nav className="navbar">
           <div className="nav-brand">
             <div className="nav-logo">AX</div>
@@ -76,6 +70,9 @@ export default function RootLayout({ children }) {
             <a href="/agents" className="nav-link">Agents</a>
             <a href="/leaderboard" className="nav-link">Leaderboard</a>
             <a href="/economy" className="nav-link">Economy Loop</a>
+            <a href="/registry" className="nav-link" style={{ color: 'var(--accent)' }}>
+              + Registry
+            </a>
           </div>
 
           <div className="nav-right">
@@ -87,41 +84,29 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
 
-        {/* ── Page Content ── */}
+        {/* Content */}
         <main>{children}</main>
 
-        {/* ── Footer ── */}
+        {/* Footer */}
         <footer className="footer">
           <div className="footer-left">
-            <span className="footer-brand">⚡ AUREX</span>
+            <span className="footer-brand">AUREX</span>
             <span className="footer-desc">
-              Credit-Weighted Signal Capital Allocation · OKX Build X Hackathon Season 2
+              Autonomous Capital Allocation System for Agentic Economy
             </span>
           </div>
           <div className="footer-links">
-            <a
-              href="https://www.oklink.com/xlayer"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-link"
-            >
-              X Layer Explorer ↗
+            <a href="https://www.oklink.com/xlayer" target="_blank" rel="noopener noreferrer" className="footer-link">
+              X Layer Explorer
             </a>
-            <a
-              href="https://www.okx.com/web3/build/docs/onchain-os/introduction"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-link"
-            >
-              Onchain OS Docs ↗
+            <a href="https://www.okx.com/web3/build/docs" target="_blank" rel="noopener noreferrer" className="footer-link">
+              Onchain OS Docs
             </a>
-            <a
-              href="https://github.com/OdeyKelvin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-link"
-            >
-              GitHub ↗
+            <a href="https://github.com/Shanks-btc/aurex" target="_blank" rel="noopener noreferrer" className="footer-link">
+              GitHub
+            </a>
+            <a href="/registry" className="footer-link" style={{ color: 'var(--accent)' }}>
+              Register Agent
             </a>
           </div>
         </footer>
