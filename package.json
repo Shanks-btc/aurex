@@ -7,14 +7,19 @@
     "start": "node server/api.js",
     "dev": "nodemon server/api.js",
     "agent": "node core/engine.js",
-    "wallets": "node scripts/generateWallets.js"
+    "wallets": "node scripts/generateWallets.js",
+    "build": "next build",
+    "next-start": "next start"
   },
   "dependencies": {
-    "ethers": "^6.0.0",
-    "axios": "^1.6.0",
-    "dotenv": "^16.0.0",
-    "express": "^4.18.0",
-    "cors": "^2.8.5"
+    "ethers": "^6.16.0",
+    "axios": "^1.15.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "cors": "^2.8.6",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"
