@@ -1,13 +1,5 @@
 /**
  * AUREX — Backend API Server
- * Hackathon Requirement: AI Interactive Experience
- *
- * Exposes AUREX agent data to Next.js dashboard
- * Enables real-time monitoring of:
- * - Agent credit scores
- * - Capital allocation percentages
- * - Trade execution history
- * - Agent wallet balances
  */
 
 import express from 'express';
@@ -23,10 +15,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/**
- * GET /health
- * System health check — confirms AUREX API is online
- */
+function safeReadJSON(filePath, fallback = []) {
+  try {
+    const raw = fs.readFileSync(filePath, 'utf8');
+    return raw && raw.trim() ? JSON.parse(raw) : fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+
 app.get('/health', (req, res) => {
   res.json({
     status: 'online',
@@ -38,25 +35,14 @@ app.get('/health', (req, res) => {
   });
 });
 
-/**
- * GET /api/status
- * Returns complete AUREX system status
- * Used by dashboard to display live agent data
- */
 app.get('/api/status', async (req, res) => {
   try {
-    const [
-      agentBalances,
-      creditData,
-      allocationData,
-      xlayerConnected,
-    ] = await Promise.all([
+    const [agentBalances, creditData, allocationData, xlayerConnected] = await Promise.all([
       getAllAgentBalances(),
       Promise.resolve(loadAgentCreditData()),
       Promise.resolve(calculateCreditWeightedAllocation()),
       verifyXLayerConnection(),
     ]);
-
     res.json({
       system: 'AUREX',
       xlayerConnected,
@@ -73,56 +59,24 @@ app.get('/api/status', async (req, res) => {
   }
 });
 
-/**
- * GET /api/credit
- * Returns detailed credit history for both signal agents
- * Shows how credit scores have evolved over time
- */
 app.get('/api/credit', (req, res) => {
   try {
-    const creditData = loadAgentCreditData();
-    res.json(creditData);
+    res.json(loadAgentCreditData());
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-/**
- * GET /api/allocations
- * Returns recent allocation cycle history
- * Shows decisions, trade hashes, and outcomes
- */
 app.get('/api/allocations', (req, res) => {
-  try {
-    const allocationHistory = JSON.parse(
-      fs.readFileSync('./data/allocations.json', 'utf8')
-    );
-    res.json(allocationHistory.slice(-20).reverse());
-  } catch (err) {
-    res.json([]);
-  }
+  const data = safeReadJSON('./data/allocations.json', []);
+  res.json(data.slice(-20).reverse());
 });
 
-/**
- * GET /api/signals
- * Returns recent signal history from both agents
- */
 app.get('/api/signals', (req, res) => {
-  try {
-    const signalHistory = JSON.parse(
-      fs.readFileSync('./data/signals.json', 'utf8')
-    );
-    res.json(signalHistory.slice(-20).reverse());
-  } catch (err) {
-    res.json([]);
-  }
+  const data = safeReadJSON('./data/signals.json', []);
+  res.json(data.slice(-20).reverse());
 });
 
-/**
- * GET /api/agents
- * Returns all 3 agentic wallet addresses
- * Required for hackathon README documentation
- */
 app.get('/api/agents', (req, res) => {
   res.json({
     agents: [
