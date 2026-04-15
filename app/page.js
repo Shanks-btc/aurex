@@ -107,9 +107,9 @@ export default function Dashboard() {
       <div className="page-hero">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <div className="page-eyebrow">OKX Build X · Season 2 · X Layer</div>
+            <div className="page-eyebrow">Autonomous Capital Allocation for Agentic Economy</div>
             <h1 className="page-title">
-              Signal <em>Intelligence</em><br />Dashboard
+              Autonomous <em>Allocation</em><br />Dashboard
             </h1>
             <p className="page-desc">
               Three autonomous agents compete on X Layer. Credit scores built from
